@@ -1,0 +1,164 @@
+mixin createPostForm(userLoggedIn) 
+    .postFormContainer 
+        .userImageContainer
+            img(src=userLoggedIn.profileImg, alt="User's profile image")
+        .textAreaContainer 
+            textarea#postTextArea(placeholder= "What's happening")
+            .buttonContainer
+                button#submitPostBtn(disabled="") Post
+
+mixin createReplyModal(userLoggedIn)
+    #replyModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='replyModalLabel' aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                h5#replyModalLabel.modal-title Reply
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                span(aria-hidden='true') &times;
+            .modal-body
+                .currentPost
+                .postFormContainer 
+                    .userImageContainer
+                        img(src=userLoggedIn.profileImg, alt="User's profile image")
+                    .textAreaContainer 
+                        textarea#replyTextArea(placeholder= "Type your reply")
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+                button#submitReplyBtn.btn.btn-primary(type='button', disabled="") Reply
+
+
+mixin createDeletePostModal(userLoggedIn)
+    #deletePostModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='deletePostModalLabel' aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                h5#deletePostModalLabel.modal-title Reply
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                span(aria-hidden='true') &times;
+            .modal-body
+                p Do you want delete this post?
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+                button#deletePostBtn.btn.btn-primary(type='button') Delete
+
+mixin createImgUploadModal(userLoggedIn)
+    #imgUploadModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='imgUploadModalLabel' aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                h5#imgUploadModalLabel.modal-title Up load your profile picture
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                span(aria-hidden='true') &times;
+            .modal-body
+                h1 Up load your profile picture
+                input#filePhoto(type='file' name="profilemg")
+                .imgPreviewContainer 
+                    img#imgPreview
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+                button#imgUploadBtn.btn.btn-primary(type='button', ) Save
+mixin createCoverImgUploadModal(userLoggedIn)
+    #coverImgUploadModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='coverImgUploadModalLabel' aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                h5#coverImgUploadModalLabel.modal-title Up load your profile picture
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                span(aria-hidden='true') &times;
+            .modal-body
+                h1 Up load your profile picture
+                input#fileCoverPhoto(type='file' name="profilemg")
+                .imgPreviewContainer 
+                    img#imgCoverPreview
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+                button#coverImgUploadBtn.btn.btn-primary(type='button', ) Save
+mixin createPinConfirmModal(userLoggedIn)
+    #pinConfirmModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='pinConfirmModalLabel' aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                h5#pinConfirmModalLabel.modal-title Pin confirm
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                span(aria-hidden='true') &times;
+            .modal-body
+                h1 Do you want pin this post?
+                p This post will appear at top of your profile.You can only pin one post
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+                button#confirmPinBtn.btn.btn-primary(type='button', ) Pin
+mixin createUnPinModal(userLoggedIn)
+    #unPinModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='unPinModalLabel' aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                h5#unPinModalLabel.modal-title Unpin post confirm
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                span(aria-hidden='true') &times;
+            .modal-body
+                h1 Do you want unpin this post?
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+                button#unPinBtn.btn.btn-primary(type='button', ) UnPin
+mixin createPostModal(userLoggedIn) 
+    +createReplyModal(userLoggedIn)
+    +createDeletePostModal(userLoggedIn)
+    +createImgUploadModal(userLoggedIn)
+    +createCoverImgUploadModal(userLoggedIn)
+    +createPinConfirmModal(userLoggedIn)
+    +createUnPinModal(userLoggedIn)
+
+mixin createFollowBtn (user,isFollowing) 
+    -text = isFollowing ? "Following" : "Follow"
+    -buttonClass = isFollowing ? "followBtn following" : "followBtn";
+    button(class=buttonClass,data-user=user._id) #{text}
+mixin createNavTab (name, isSelected ) 
+    -className = isSelected ? "tab active" : "tab"
+    -isReply = isSelected ? "false" : "true"
+    button(class=className,data-isReply= isReply) 
+        span #{name}
+mixin createNavTabFollow (name, isSelected ) 
+    -className = isSelected ? "tab active" : "tab"
+    -isFollowing = isSelected ? "true" : "false"
+    button(class=className,data-isfollowing= isFollowing) 
+        span #{name}
+mixin createNavTabInSearch (name, isSelected ) 
+    -className = isSelected ? "tab active" : "tab"
+    -tab = isSelected ? "posts" : "users"
+    button(class=className,data-tab=tab) 
+        span #{name}
+
+
+mixin creatChatImg(chatData, userLoggedIn) 
+    if(!chatData)
+        return
+    - let i = 0 ;
+    - let maxImgToShow = 3;
+    - let remainingUsers = chatData.users.length - maxImgToShow;
+    - remainingUsers--;
+    .chatImagesContainer
+        if(remainingUsers > 0 ) 
+            .userCount 
+                span +#{remainingUsers}
+        each user in chatData.users
+            if(chatData.users.length != 1 && user._id == userLoggedIn._id)
+                - continue
+            else if (i >= maxImgToShow) 
+                - break
+            img(src=user.profileImg, alt="User's profile image", title=user.firstName)
+            - i++
+
+
+mixin changeChatNameModal(chatData)
+    #chatNameModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='chatNameModalLabel' aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                h5#chatNameModalLabel.modal-title Change the chat name
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                span(aria-hidden='true') &times;
+            .modal-body
+                input#chatNameTextBox(type='text',placeholder="Enter a name for this chat",value= chatData.chatName)
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+                button#changeChatNameBtn.btn.btn-primary(type='button') Save

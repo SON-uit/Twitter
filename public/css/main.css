@@ -1,0 +1,626 @@
+:root {
+    --blue: #1fa2f1;
+    --blueLight: #9bd1f9;
+    --btnHoverBg: #d4edff;
+    --lightGrey: rgb(230,236,240);
+    --spacing: 16px;
+    --grayText: rgb(101,119,134);
+    --grayButtonText: rgba(0,0,0,0.34); 
+    --red: rgb(226,34,94);  
+    --green: rgb(23,191,99);
+    --blueBackground: rgba(212,237,255,0.6);
+}
+html,body {
+    height: 100%;
+    width: 100%;
+    background-color:#fff;
+}
+a {
+    color: inherit ;
+}
+* {
+    outline: none !important;
+}
+h1 {    
+    font-size:1rem;
+    font-weight: 800; 
+    margin: 0;
+}
+button {
+    background-color: transparent;
+    border: none;
+    color: var(--grayButtonText);
+}
+button i,
+button span {
+    pointer-events: none;
+}
+a:hover {
+    color: inherit;
+    text-decoration:none;
+}
+.wrapper {
+    height:100%;    
+}
+.wrapper .row {
+    height:100%;
+}
+/* NAV */
+nav a.blue {
+    color:var(--blue)
+}
+nav a:hover {
+    background-color: var(--btnHoverBg);
+    color: var(--blue);
+    border-radius: 50%;
+}
+nav {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    height: 100%;  
+}
+nav a,
+nav button {
+    display: flex;
+    font-size: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    align-items:center;
+    justify-content: center;
+    position: relative;
+}
+.mainSection {
+    padding: 0;
+    border-left: 1px solid var(--lightGrey);
+    border-right: 1px solid var(--lightGrey);
+    display: flex;
+    flex-direction:column;
+}
+/* Tittle*/
+.titleContainer{
+    height: 3rem; 
+    padding: 0 var(--spacing);
+    display: flex;
+    align-items:center;
+    border-bottom: 1px solid var(--lightGrey);
+    flex-shrink: 0;
+}
+.titleContainer h1 {
+    flex:1;
+}
+/* Post form*/
+.postFormContainer {
+    display:flex;
+    padding: var(--spacing);
+    border-bottom:0.5rem  solid var(--lightGrey);
+    flex-shrink:0;
+}
+.userImageContainer {
+    width: 3rem;
+    height: 3rem;
+}
+.userImageContainer img {
+    width: 100%;
+    border-radius: 50%;
+    background-color:white;
+}
+.textAreaContainer {
+    flex:1;
+    padding: 0 var(--spacing);
+}
+.textAreaContainer textarea {
+    width: 100%;
+    border: none;
+    resize: none;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+#submitPostBtn {
+    background-color: var(--blue);
+    color:white;
+    border-radius: 2.5rem;
+    border: none;
+    padding: 0.5rem 1rem;
+}
+#submitPostBtn:disabled {
+    background-color: var(--blueLight);
+}
+/* Posted render */
+.post {
+    display: flex;
+    flex-direction: column;
+    padding:var(--spacing);
+    border-bottom: 1px solid var(--lightGrey);
+    flex-shrink:0;   
+}
+.mainContentContainer {
+    flex:1;
+    display:flex;
+    overflow:hidden;
+}
+.postContentContainer {
+    padding: 0 var(--spacing);
+    display:flex;
+    flex-direction: column;
+    flex:1;
+}
+.userName,.date {
+    color:var(--grayText); 
+}
+.displayName {
+    font-weight:bold;
+}
+.displayName:hover {
+    border-bottom: 1px solid var(--grayText);
+}
+.postFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.postFooter button i {
+    padding: 0.5rem;
+    outline :none;
+}
+.postFooter > button {
+    flex: 1;
+}
+.postContentContainer span,
+.postContentContainer a {
+    padding-right: 0.4rem;
+}
+.postContentContainer button:hover i {
+    background-color: #d4edff;
+    color: var(--blue);
+    border-radius: 50%;
+}
+button.likeBtn.red.active {
+    color: var(--red);
+}
+button.retweetBtn.green.active {
+    color: var(--green);
+}
+.userRetweet,
+.pinnedPost{
+    padding-left: var(--spacing);
+    font-size: 0.9rem;
+    color: var(--grayText);
+    margin-bottom: 0.2rem;
+    font-style: italic;
+}
+/* REPLY MODAL*/
+.modal .postFormContainer {
+    border: none;
+    padding: var(--spacing);
+}
+/* REPLY TO */
+.replyFlag {
+    margin-bottom: 0.2rem;
+}
+.replyFlag a {
+    color: var(--blue)
+}
+.post {
+    cursor: pointer;
+}
+/* Delete post button */
+.postContentContainer .header {
+    display: flex;
+}
+.postContentContainer .buttons{
+    flex: 1;
+    text-align: end;
+}
+/* Css for create follow tab in mixin and search in search page */
+.resultFollowContainer,
+.resultSearchContainer {
+    display: flex;
+    flex-direction: column;
+} 
+.resultFollowContainer .user,
+.resultSearchContainer .user {
+    display: flex;
+    padding: var(--spacing);
+    border: 1px solid var(--lightGrey)
+}
+.user .userDetailsContainer {
+    flex:1;
+    padding: 0 var(--spacing);
+}
+
+/* Css for message and follow btn */
+.profileHeaderContainer .profileBtnContainer {
+    text-align: right;
+    padding: var(--spacing);
+}
+.profileMessageBtn,.followBtn {
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    font-weight: bold;
+    padding : 0.5rem 1rem;
+    border-radius: 4rem;
+    margin-left: var(--spacing);
+}
+.profileMessageBtn:hover,.followBtn:hover {
+    background-color: var(--blueBackground);
+}
+.followBtn.following {
+    background-color: var(--blue);
+    color:white
+}
+
+/* Css for user's details information*/
+.userDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    padding:  var(--spacing);
+    margin-top:  var(--spacing);
+}
+.profileHeaderContainer .userDetailsContainer .dislayName {
+    font-weight: bold
+}
+.userDetailsContainer .flowersContainer .value {
+    font-weight: bold;
+    margin-right: 0.3rem;
+}
+.userDetailsContainer .flowersContainer span:not(.value) {
+    color: var(--grayText);
+}
+.userDetailsContainer .flowersContainer a {
+    margin-right: 0.5rem;
+}
+.userDetailsContainer .flowersContainer a:hover {
+    border-bottom: 1px solid black;
+}
+
+/*Css for pin and not pin icons */
+.postContentContainer .buttons {
+    color: var(--lightGray);
+}
+.postContentContainer .buttons .pinActive {
+    color: var(--blue);
+}
+/* Css for nav tabs */* 
+.navTabsContainer {
+    display:flex;
+    justify-content: space-around;
+    border-bottom: 1px solid lightGrey;
+}
+.navTabsContainer .tab {
+    flex:1;
+    background-color: white;
+    padding: 1rem;
+    text-align:center;
+    color: var(--grayText);
+    font-weight: bold;
+}
+.navTabsContainer .tab:hover {
+    background-color: var(--blueBackground);
+    color: var(--blue);
+}
+.navTabsContainer .tab.active {
+    border-bottom: 2px solid var(--blue);
+    color:var(--blue);
+}
+/*Css for search bar */
+.searchBarContainer {
+    display: flex;
+    padding: var(--spacing);
+    color: var(--grayText);
+    position: relative;
+}
+.searchBarContainer i {
+    position:absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    font-size: 1.5rem;
+}
+.searchBarContainer #searchBox {
+    width: 100%;
+    height: 2.5rem;
+    padding: 0.2rem 2.5rem;
+    border-radius: 2.5rem;
+    background-color:var(--lightGrey);
+    border: none;
+    color:var(--grayText)
+}
+/* CSS for new message page */
+
+.chatPageContainer {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    flex-basis: 0;
+}
+#userSearchTextBox {
+    border: none;
+    flex: 1;
+    min-width: 30rem;
+}
+.chatTitleBar {
+    border: 1px solid var(--lightGrey);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    min-height: 4rem; ;
+}
+.chatTitleBar label {
+    margin: 0;
+}
+#createChatButton {
+    border: none;
+    background-color: var(--blue);
+    color:#fff;
+    padding: 0.5rem 1rem;   
+    margin: 0.5rem auto;
+    border-radius: 2.5rem;
+}
+#createChatButton:disabled {
+    background-color: var(--lightGrey);
+    color: var(--grayText)
+}
+/* selectedUser in newMessage page */
+.selectedUser {
+    background-color: #cbe5fe;
+    color: #0084ff;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    margin: 0.5rem;
+    display: inline-block;
+}
+
+/* CSS for inbox page  */
+.resultContainer {
+    display: flex;
+    flex-direction: column;
+}
+.resultsListItem {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid  var(--lightGrey);
+}
+.resultsListItem:hover {
+    background-color: #f2f2f2;
+}
+.resultsDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.resultsDetailsContainer .heading {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.resultsDetailsContainer .subText {
+    color: var(--grayText);
+    font-size: 0.8rem;
+}
+.resultsListItem img {
+    width: 100%;
+    border-radius: 50%;
+}
+.resultImgContainer {
+    width: 3rem;
+    height: 3rem;
+    position: relative;
+    margin-right: 1rem;
+    display: flex;
+    padding: 0.4rem;
+}
+.groupChatImg img {
+    height: 60%;
+    width: 60%;
+    position: absolute;
+    border: 1px solid #fff;
+}
+.groupChatImg img:first-child {
+    top: 0;
+    right: 0;
+}
+.subText.active {
+    color:black;
+    font-weight:bold;
+}
+/* CSS for Chat Page */
+.chatTitleBarContainer {
+    border-bottom: 1px solid var(--lightGrey);
+    display: flex;
+    padding: var(--spacing);
+    align-items: center;
+}
+#chatName {
+    width: 100%;
+    border: 1px solid transparent;
+    padding: 0 0.3rem;
+}
+#chatName:hover {
+    border: 1px solid var(--lightGrey);
+    cursor:text;
+}
+.chatContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.chatContainer .footer {
+    display: flex;
+    padding: 0 var(--spacing);
+}
+.chatContainer .footer textarea {
+    flex:1;
+    resize:none;
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 2rem;
+    height: 3rem;
+    padding: 0.75rem;
+    border:none;
+}
+.chatContainer .footer button {
+    font-size: 1.5rem;
+    color: var(--blue);
+    background-color:transparent;
+}
+.chatMessages {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: var(--spacing);
+}
+.chatImagesContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+.chatImagesContainer img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+.chatImagesContainer .userCount {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color:#f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    border: 2px solid #fff;
+}
+.chatImagesContainer img:not(:last-child) {
+    margin-left: -0.5rem;
+}
+#chatNameTextBox {
+    width: 100%;
+}
+
+.chatMessages .message {
+    list-style-type:none;
+    padding-bottom: 0.2rem;
+    display:flex;
+    flex-shrink: 0;
+    align-items:flex-end;
+    -webkit-flex:0;
+}
+.chatMessages .message .messageBody{
+    background-color: #f1f0f0;
+    padding: 0.3rem 0.6rem;
+    border-radius: 1.5rem;
+    font-size: 1rem;
+    width: 100%;
+    word-wrap: break-word;
+}
+.chatMessages .message .messageContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 55%;
+}
+.chatMessages .message.mine {
+    flex-direction: row-reverse;
+}
+.chatMessages .message.mine .messageBody {
+    background-color: var(--blue);
+    color: #fff;
+}
+.chatMessages .message.theirs {
+    justify-content: flex-start;
+}
+.chatMessages .message.mine.first .messageBody{
+    border-bottom-right-radius: 0.2rem;
+}
+.chatMessages .message.mine:not(.first):not(.last) .messageBody{
+    border-bottom-right-radius: 0.2rem;
+    border-top-right-radius: 0.2rem;
+}
+.chatMessages .message.mine.last:not(.first) .messageBody{
+    border-top-right-radius: 0.2rem;
+}
+
+.chatMessages .message.theirs.first .messageBody{
+    border-bottom-left-radius: 0.2rem;
+}
+.chatMessages .message.theirs:not(.first):not(.last) .messageBody{
+    border-bottom-left-radius: 0.2rem;
+    border-top-left-radius: 0.2rem;
+}
+.chatMessages .message.theirs.last:not(.first) .messageBody{
+    border-top-left-radius: 0.2rem;
+}
+.messageContainer .senderName {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    color: var(--grayText);
+}
+.chatMessages .imgContainer {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 0.5rem;
+}
+.chatMessages .imgContainer img {
+    width: 100%;
+    border-radius: 50%;
+}
+.chatMessages .message.last {
+    margin-bottom: 0.5rem;
+}
+.mainContentContainer::-webkit-scrollbar-thumb {
+    border-radius: 50%;
+}
+.loadingSpinnerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.typingDots {
+    padding: 0.5rem var(--spacing);
+    font-size: 1rem;
+}
+.typingDots img {
+    height: 2.5rem;
+    border-radius: 1.5rem;
+    display: none;
+}
+/* CSS for notification page */
+.resultsListItem.active {
+    background-color: var(--blueBackground);
+}
+/* CSS for number Notifcation and Message */
+#numberOfNotifications,
+#numberOfMessages {
+    position:absolute;
+    top: 0;
+    right: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--red);
+    border-radius: 50%;
+    color:white;
+    font-size:1rem;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    visibility: hidden;
+}
+#numberOfNotifications.active,
+#numberOfMessages.active {
+    visibility: visible;
+}
+/* CSS for nitification pop up */
+#notificationList {
+    position: fixed;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}

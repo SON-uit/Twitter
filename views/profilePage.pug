@@ -1,0 +1,50 @@
+extends layouts/main-layout.pug
+
+block css 
+    link(rel="stylesheet" href="/css/profilePage.css")
+
+block content
+    .profileHeaderContainer
+        .photoSection
+            .coverPhotoContainer
+                if (profile.coverProfileImg)
+                    img(src=profile.coverProfileImg, alt =" User's cover photo")
+                if userLoggedIn._id == profile._id
+                    button.coverPictureBtn(data-toggle="modal" data-target = "#coverImgUploadModal")
+                        i.fas.fa-camera
+            .userImgContainer
+                img(src=profile.profileImg, alt =" User's photo")  
+                if userLoggedIn._id == profile._id
+                    button.profilePictureBtn(data-toggle="modal" data-target = "#imgUploadModal")
+                        i.fas.fa-camera
+        .profileBtnContainer
+            if profile._id != userLoggedIn._id 
+                a.profileMessageBtn(href=`/messages/${profile._id}`)
+                    i.fas.fa-envelope 
+                -const userdId = profile._id.toString()
+                -if(userLoggedIn.followings && userLoggedIn.followings.includes(userdId))
+                    +createFollowBtn(profile,true)
+                -else
+                    +createFollowBtn(profile,false)
+        .userDetailsContainer
+            span.dislayName #{`${profile.firstName} ${profile.lastName}`}
+            span.displayUserName @#{profile.userName}
+            span.dislayDescriptiom  dadsasdasfafas 
+            .flowersContainer
+                a(href=`/profile/${profile._id}/follow`)
+                    span.value #{profile.followings.length}
+                    span Followings
+                a(href=`/profile/${profile._id}/follow`)
+                    span#followersLabel.value #{profile.followers.length}
+                    span Followers
+    .navTabsContainer 
+        +createNavTab('Posts',true)
+        +createNavTab('My Replies',false)
+    .postPinnedContainer
+    .postContainer
+    +createPostModal(userLoggedIn)
+block scripts 
+    script.
+            const profile = !{JSON.stringify(profile)}
+            let isSelectedTab = 'post'
+    script(src='/js/profilePage.js')

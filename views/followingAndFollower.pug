@@ -1,0 +1,17 @@
+extends layouts/main-layout.pug
+
+block css 
+    link(rel="stylesheet" href="/css/profilePage.css")
+
+block content
+    h1 #{profile._email}
+    h1 #{userLoggedIn._email}
+    .navTabsContainer 
+        +createNavTabFollow('Followings',true)
+        +createNavTabFollow('Followers',false)
+    .resultFollowContainer
+block scripts 
+    script.
+            const profile = !{JSON.stringify(profile)}
+            let isSelectedTab = 'followings'
+    script(src='/js/followingsAndFollowers.js')

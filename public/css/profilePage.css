@@ -1,0 +1,119 @@
+/* Css for profile img and cover img */
+.profileHeaderContainer .photoSection {
+    height: 10rem;
+    background: var(--blue);
+    position:relative;
+}
+.profileHeaderContainer .userImgContainer {
+    height: 8rem;
+    width: 8rem;
+    margin-left: var(--spacing);
+    position:absolute;
+    bottom: -4rem;
+    background-color:white;
+    border-radius:50%; 
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+.profileHeaderContainer .userImgContainer img {
+    width: 100%;
+    border: 0.5rem solid white;
+    border-radius: 50%;
+}
+.coverPhotoContainer {
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    height: 100%;
+}
+.coverPhotoContainer img {
+    width: 100%;
+    height: 100%;
+}
+.userImgContainer .profilePictureBtn,
+.photoSection .coverPictureBtn {
+    position:absolute;
+    font-size: 3rem;
+    color: rgba(0,0,0,0.3);
+    display: none;
+}
+.userImgContainer:hover .profilePictureBtn,
+.photoSection .coverPictureBtn {
+    display:block;
+}
+/*Css for img upload and img upload preview */
+.imgPreviewContainer {
+    display: flex;
+} 
+#imgPreview,#imgCoverPreview {
+    width: 100%;
+    display: block;
+    max-width: 100%;
+}
+
+/* Css for message and follow btn */
+.profileHeaderContainer .profileBtnContainer {
+    text-align: right;
+    padding: var(--spacing);
+}
+.profileMessageBtn,.followBtn {
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    font-weight: bold;
+    padding : 0.5rem 1rem;
+    border-radius: 4rem;
+    margin-left: var(--spacing);
+}
+.profileMessageBtn:hover,.followBtn:hover {
+    background-color: var(--blueBackground);
+}
+.followBtn.following {
+    background-color: var(--blue);
+    color:white
+}
+/* Css for user's details information*/
+.userDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    padding:  var(--spacing);
+    margin-top:  var(--spacing);
+}
+.profileHeaderContainer .userDetailsContainer .dislayName {
+    font-weight: bold
+}
+.userDetailsContainer .flowersContainer .value {
+    font-weight: bold;
+    margin-right: 0.3rem;
+}
+.userDetailsContainer .flowersContainer span:not(.value) {
+    color: var(--grayText);
+}
+.userDetailsContainer .flowersContainer a {
+    margin-right: 0.5rem;
+}
+.userDetailsContainer .flowersContainer a:hover {
+    border-bottom: 1px solid black;
+}
+/* Css for nav tabs */* 
+.navTabsContainer {
+    display:flex;
+    justify-content: space-around;
+    border-bottom: 1px solid lightGrey;
+}
+.navTabsContainer .tab {
+    flex:1;
+    background-color: white;
+    padding: 1rem;
+    text-align:center;
+    color: var(--grayText);
+    font-weight: bold;
+}
+.navTabsContainer .tab:hover {
+    background-color: var(--blueBackground);
+    color: var(--blue);
+}
+.navTabsContainer .tab.active {
+    border-bottom: 2px solid var(--blue);
+    color:var(--blue);
+}

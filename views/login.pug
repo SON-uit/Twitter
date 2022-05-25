@@ -1,0 +1,19 @@
+extends layouts/login-layout.pug
+
+block content
+    .loginContainer
+        h1 Login
+        h1 #{errorMessage}
+        form(method="post",action="/user/login")
+            //- input(type="text", name="userName",placeholder="Username or email",required ="") 
+            //- input(type="password", name="password",placeholder="Password",required ="")
+            input(type="text", name="userName",placeholder="Username or email", value="heyga" ,required ="")
+            input(type="password", name="password",placeholder="Password",value= "123456" ,required ="")
+            input(type="submit", value="Login")
+        .footer
+            button 
+                a(href="/user/register") Need a account? Register Here.
+            a(href="/api/auths/google")
+                img(src="/images/google-signin.png" alt="Google Sign")
+            a(href="/api/auths/facebook")
+                img(src="/images/facebook-signin.png" alt="Facebook Sign")

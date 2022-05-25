@@ -1,0 +1,17 @@
+extends layouts/main-layout.pug
+
+
+block content
+    h1 #{userLoggedIn._email}
+    .searchBarContainer
+        i.fas.fa-search
+        input#searchBox(type="text" name="searchBox", data-search="posts", placeholder="Search for user or post")
+    .navTabsContainer 
+        +createNavTabInSearch('Posts',true)
+        +createNavTabInSearch('Users',false)
+    .resultSearchContainer
+    +createPostModal(userLoggedIn)
+block scripts 
+    script.
+            let isSelectedTab = 'posts'
+    script(src='/js/search.js')
